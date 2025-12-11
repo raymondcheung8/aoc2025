@@ -12,13 +12,13 @@ object Part1 extends App {
     println(s"$pointer --- $count")
     input match {
       case h :: t =>
-        val rotations = h.tail.toInt
+        val rotations     = h.tail.toInt
         val newRawPointer = h.head match {
           case 'L' => pointer - rotations
           case 'R' => pointer + rotations
         }
         val newPointer = math.floorMod(newRawPointer, 100)
-        val newCount = if (newPointer == 0) count + 1 else count
+        val newCount   = if (newPointer == 0) count + 1 else count
         getAns(t, newPointer, newCount)
       case Nil => count
     }

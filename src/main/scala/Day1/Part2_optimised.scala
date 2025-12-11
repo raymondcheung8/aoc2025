@@ -12,7 +12,7 @@ object Part2_optimised extends App {
     println(s"${input.headOption} --- $pointer --- $count --- $carryOver")
     input match {
       case h :: t =>
-        val rotations = h.tail.toInt
+        val rotations                       = h.tail.toInt
         val (newRawPointer, carryOverCount) = (h.head, carryOver) match {
           // Edge case: Going left after going right and landing on 0 will double count the 0
           case ('L', Some('R')) => (pointer - rotations, -1)
@@ -21,9 +21,9 @@ object Part2_optimised extends App {
           case ('R', Some('L')) => (pointer + rotations, 1)
           case ('R', _)         => (pointer + rotations, 0)
         }
-        val newPointer = math.floorMod(newRawPointer, 100)
+        val newPointer      = math.floorMod(newRawPointer, 100)
         val additionalCount = math.floorDiv(newRawPointer, 100).abs
-        val newCount = count + additionalCount + carryOverCount
+        val newCount        = count + additionalCount + carryOverCount
         getAns(t, newPointer, newCount, Option.when(newPointer == 0)(h.head))
       case Nil => count + (if (carryOver.contains('L')) 1 else 0)
     }
