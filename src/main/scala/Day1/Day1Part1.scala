@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import scala.io.Source
 import scala.util.Using
 
-object Part1 extends App {
+object Day1Part1 extends App {
   val input = Using(Source.fromFile("src/main/scala/Day1/input")) { source => source.mkString.split('\n').toList }.get
 
   @tailrec
