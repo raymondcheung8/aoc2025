@@ -12,9 +12,7 @@ object Day2Part1 extends App {
     case h :: t =>
       // rawRange should always be an array of 2 items
       val rawRange = h.split('-')
-      println(h)
-      println(rawRange(0).toLong)
-      println(rawRange(1).toLong)
+      println(s"$h --- ${rawRange(0).toLong} --- ${rawRange(1).toLong}")
       val range = rawRange(0).toLong to rawRange(1).toLong
       val total = range.foldLeft(sum) { (newSum, x) =>
         val xStr = x.toString
