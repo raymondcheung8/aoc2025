@@ -1,15 +1,13 @@
 package puzzles.day1
 
-import puzzles.Utils
+import com.typesafe.scalalogging.StrictLogging
 
 import scala.annotation.tailrec
 
-object Day1Part2_optimised extends App {
-  val input = Utils.getInputFromPath("src/main/scala/puzzles/day1/input")
-
+object Day1Part2_optimised extends StrictLogging {
   @tailrec
   def getAns(input: List[String], pointer: Int = 50, count: Int = 0, carryOver: Option[Char] = None): Int = {
-    println(s"${input.headOption} --- $pointer --- $count --- $carryOver")
+    logger.debug(s"${input.headOption} --- $pointer --- $count --- $carryOver")
     input match {
       case h :: t =>
         val rotations                       = h.tail.toInt
@@ -28,6 +26,4 @@ object Day1Part2_optimised extends App {
       case Nil => count + (if (carryOver.contains('L')) 1 else 0)
     }
   }
-
-  println(getAns(input))
 }

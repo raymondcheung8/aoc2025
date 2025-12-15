@@ -1,8 +1,15 @@
 package puzzles
 
+import java.nio.file.Paths
 import scala.io.Source
 import scala.util.Using
 
 object Utils {
-  def getInputFromPath(path: String): List[String] = Using(Source.fromFile(path)) { source => source.mkString.split('\n').toList }.get
+  private val resourcesPath = Paths.get("src/main/resources")
+  private val inputFileName = "input"
+
+  def getInputFromDay(day: String): List[String] =
+    Using(Source.fromFile(resourcesPath.resolve(day).resolve(inputFileName).toUri)) { source =>
+      source.mkString.split('\n').toList
+    }.get
 }

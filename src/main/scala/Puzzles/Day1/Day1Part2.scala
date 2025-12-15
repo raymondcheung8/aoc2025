@@ -1,15 +1,13 @@
 package puzzles.day1
 
-import puzzles.Utils
+import com.typesafe.scalalogging.StrictLogging
 
 import scala.annotation.tailrec
 
-object Day1Part2 extends App {
-  val input = Utils.getInputFromPath("src/main/scala/puzzles/day1/input")
-
+object Day1Part2 extends StrictLogging {
   @tailrec
   def getAns(input: List[String], pointer: Int = 50, count: Int = 0): Int = {
-    if (input.headOption.exists(_.charAt(1) != '0')) println(s"${input.headOption} --- $pointer --- $count")
+    if (input.headOption.exists(_.charAt(1) != '0')) logger.debug(s"${input.headOption} --- $pointer --- $count")
     input match {
       case h :: t =>
         val rotations = h.tail.toInt
@@ -31,6 +29,4 @@ object Day1Part2 extends App {
       case Nil => count
     }
   }
-
-  println(getAns(input))
 }
