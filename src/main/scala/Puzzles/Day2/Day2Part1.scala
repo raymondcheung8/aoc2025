@@ -1,11 +1,11 @@
-package Puzzles.Day2
+package puzzles.day2
 
-import Puzzles.Utils
+import puzzles.Utils
 
 import scala.annotation.tailrec
 
 object Day2Part1 extends App {
-  val input = Utils.getInputFromPath("src/main/scala/Puzzles/Day2/input")
+  val input = Utils.getInputFromPath("src/main/scala/puzzles/day2/input")
 
   @tailrec
   def getAns(input: List[String], sum: Long = 0): Long = input match {

@@ -1,4 +1,4 @@
-package Puzzles
+package puzzles
 
 import scala.io.Source
 import scala.util.Using
