@@ -4,5 +4,8 @@ ThisBuild / scalaVersion := "2.13.18"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "aoc2025"
+    Seq(
+      name := "aoc2025",
+      libraryDependencies ++= Dependencies.common
+    )
   )
