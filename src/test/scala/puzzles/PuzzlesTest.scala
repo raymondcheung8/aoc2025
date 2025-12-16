@@ -4,6 +4,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import puzzles.day1.{Day1Part1, Day1Part2, Day1Part2_optimised}
 import puzzles.day2.{Day2Part1, Day2Part2}
+import puzzles.day3.Day3Part1
 
 class PuzzlesTest extends AnyWordSpec with Matchers {
 
@@ -51,6 +52,15 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
     "Part 2" in {
       Day2Part2.getAns(input) shouldEqual 46769308485L
+    }
+  }
+
+  "Day 3" should {
+    val input = Utils.getInputFromDay("day3").flatMap(_.split(',').toList)
+    val exampleInput = "987654321111111\n811111111111119\n234234234234278\n818181911112111".split('\n').toList
+
+    "Part 1 example" in {
+      Day3Part1.getAns(exampleInput) shouldEqual 357
     }
   }
 }
