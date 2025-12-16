@@ -70,5 +70,9 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     "Part 2 example" in {
       Day3Part2.getAns(exampleInput) shouldEqual 3121910778619L
     }
+
+    "Part 2" in {
+      Day3Part2.getAns(input) shouldEqual 173065202451341L
+    }
   }
 }

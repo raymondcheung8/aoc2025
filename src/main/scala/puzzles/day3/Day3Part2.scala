@@ -6,14 +6,26 @@ import scala.annotation.tailrec
 
 object Day3Part2 extends StrictLogging {
   @tailrec
-  private def getMaxJoltage(bank: List[Char], maxPrevBatt: Int = 0, maxJoltage: Int = 0): Int = bank match {
-    case h :: t => getMaxJoltage(t, maxPrevBatt.max(h.asDigit), maxJoltage.max(s"$maxPrevBatt$h".toInt))
-    case Nil => maxJoltage
+  private def getBatts(batts: Vector[Char], pointer: Int = 0): Vector[Char] = {
+    if (pointer + 1 < batts.length)
+      if (batts(pointer) < batts(pointer + 1)) batts.patch(pointer, Nil, 1)
+      else getBatts(batts, pointer + 1)
+    else batts.take(pointer)
   }
 
   @tailrec
-  def getAns(input: List[String], acc: Int = 0): Int = input match {
-    case h :: t => getAns(t, acc + getMaxJoltage(h.toList))
+  private def getMaxJoltage(bank: List[Char], currentBatts: Vector[Char]): Long = bank match {
+    case h :: t => getMaxJoltage(t, getBatts(currentBatts :+ h))
+    case Nil =>
+      logger.debug(s"${currentBatts.mkString}")
+      currentBatts.mkString.toLong
+  }
+
+  @tailrec
+  def getAns(input: List[String], acc: Long = 0L): Long = input match {
+    case h :: t =>
+      val (initial, remainingBank) = h.splitAt(12)
+      getAns(t, acc + getMaxJoltage(remainingBank.toList, initial.toVector))
     case Nil => acc
   }
 }
