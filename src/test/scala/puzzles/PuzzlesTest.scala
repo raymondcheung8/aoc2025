@@ -4,7 +4,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import puzzles.day1.{Day1Part1, Day1Part2, Day1Part2_optimised}
 import puzzles.day2.{Day2Part1, Day2Part2}
-import puzzles.day3.Day3Part1
+import puzzles.day3.{Day3Part1, Day3Part2}
 
 class PuzzlesTest extends AnyWordSpec with Matchers {
 
@@ -65,6 +65,10 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
     "Part 1" in {
       Day3Part1.getAns(input) shouldEqual 17432
+    }
+
+    "Part 2 example" in {
+      Day3Part2.getAns(exampleInput) shouldEqual 3121910778619L
     }
   }
 }

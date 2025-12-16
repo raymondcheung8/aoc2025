@@ -1,8 +1,10 @@
 package puzzles.day3
 
+import com.typesafe.scalalogging.StrictLogging
+
 import scala.annotation.tailrec
 
-object Day3Part1 {
+object Day3Part2 extends StrictLogging {
   @tailrec
   private def getMaxJoltage(bank: List[Char], maxPrevBatt: Int = 0, maxJoltage: Int = 0): Int = bank match {
     case h :: t => getMaxJoltage(t, maxPrevBatt.max(h.asDigit), maxJoltage.max(s"$maxPrevBatt$h".toInt))
