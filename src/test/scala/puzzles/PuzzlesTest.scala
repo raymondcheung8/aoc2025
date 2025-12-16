@@ -86,15 +86,19 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
   "Day 4" should {
     val day = "day4"
-    // Using a 2D Vector of Boolean to optimise memory usage and lookups
-    val input        = Utils.getInputFromDay(day).map(_.map(_ == '@').toVector).toVector
+    val input        = Utils.getInputFromDay(day).map(_.zipWithIndex.toVector).zipWithIndex.toVector
     val exampleInput = "..@@.@@@@.\n@@@.@.@.@@\n@@@@@.@.@@\n@.@@@@..@.\n@@.@@@@.@@\n.@@@@@@@.@\n.@.@.@.@@@\n@.@@@.@@@@\n.@@@@@@@@.\n@.@.@@@.@."
-      .split(',')
-      .map(_.map(_ == '@').toVector)
+      .split('\n')
+      .map(_.zipWithIndex.toVector)
+      .zipWithIndex
       .toVector
 
     "Part 1 example" in {
       Day4Part1.getAns(exampleInput) shouldEqual 13
+    }
+
+    "Part 1" in {
+      Day4Part1.getAns(input) shouldEqual answers((day, "part1"))
     }
   }
 }
