@@ -8,41 +8,49 @@ import puzzles.day2.{Day2Part1, Day2Part2}
 class PuzzlesTest extends AnyWordSpec with Matchers {
 
   "Day 1" should {
-    "Part 1" in {
-      val input = Utils.getInputFromDay("day1")
-      val actual = Day1Part1.getAns(input)
+    val input = Utils.getInputFromDay("day1")
+    val exampleInput = "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82".split('\n').toList
 
-      actual should ===(1034)
+    "Part 1 example" in {
+      val actual = Day1Part1.getAns(exampleInput)
+      actual shouldEqual 3
+    }
+
+    "Part 1" in {
+      Day1Part1.getAns(input) shouldEqual 1034
+    }
+
+    "Part 2 example" in {
+      Day1Part2.getAns(exampleInput) shouldEqual 6
     }
 
     "Part 2" in {
-      val input = Utils.getInputFromDay("day1")
-      val actual = Day1Part2.getAns(input)
-
-      actual should ===(6166)
+      Day1Part2.getAns(input) shouldEqual 6166
     }
 
     "Part 2 optimised" in {
-      val input = Utils.getInputFromDay("day1")
-      val actual = Day1Part2_optimised.getAns(input)
-
-      actual should ===(6166)
+      Day1Part2_optimised.getAns(input) shouldEqual 6166
     }
   }
 
   "Day 2" should {
-    "Part 1" in {
-      val input = Utils.getInputFromDay("day2")
-      val actual = Day2Part1.getAns(input.head.split(',').toList)
+    val input = Utils.getInputFromDay("day2").flatMap(_.split(',').toList)
+    val exampleInput = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124".split(',').toList
 
-      actual should ===(31000881061L)
+    "Part 1 example" in {
+      Day2Part1.getAns(exampleInput) shouldEqual 1227775554L
+    }
+
+    "Part 1" in {
+      Day2Part1.getAns(input) shouldEqual 31000881061L
+    }
+
+    "Part 2 example" in {
+      Day2Part2.getAns(exampleInput) shouldEqual 4174379265L
     }
 
     "Part 2" in {
-      val input = Utils.getInputFromDay("day2")
-      val actual = Day2Part2.getAns(input.head.split(',').toList)
-
-      actual should ===(46769308485L)
+      Day2Part2.getAns(input) shouldEqual 46769308485L
     }
   }
 }
