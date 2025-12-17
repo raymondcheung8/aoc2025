@@ -7,6 +7,7 @@ import puzzles.day2.{Day2Part1, Day2Part2}
 import puzzles.day3.{Day3Part1, Day3Part2}
 import puzzles.day4.{Day4Part1, Day4Part2}
 import puzzles.day5.{Day5Part1, Day5Part2}
+import puzzles.day6.Day6Part1
 
 class PuzzlesTest extends AnyWordSpec with Matchers {
   val answers: Map[(String, String), Long] = Utils.getAnswers
@@ -125,6 +126,16 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
     "Part 2" in {
       Day5Part2.getAns(input) shouldEqual answers((day, "part2"))
+    }
+  }
+
+  "Day 6" should {
+    val day = "day6"
+    val input = Utils.getInputFromDay(day)
+    val exampleInput = "123 328  51 64 \n 45 64  387 23 \n  6 98  215 314\n*   +   *   +  ".split('\n').toList
+
+    "Part 1 example" in {
+      Day6Part1.getAns(exampleInput) shouldEqual 4277556
     }
   }
 }
