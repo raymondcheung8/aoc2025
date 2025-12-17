@@ -3,7 +3,7 @@ package puzzles.day4
 import com.typesafe.scalalogging.StrictLogging
 
 object Day4Part1 extends StrictLogging {
-  def getAns(input: Vector[(Vector[(Char, Int)], Int)]): Int = {
+  def getAnsInner(input: Vector[(Vector[(Char, Int)], Int)]): Int = {
     input.foldLeft(0) { case (count, (row, j)) =>
       count + row.foldLeft(0) { case (rowCount, (isRoll, i)) =>
         lazy val isAccessible =
@@ -22,4 +22,6 @@ object Day4Part1 extends StrictLogging {
       }
     }
   }
+
+  def getAns(input: List[String]): Int = getAnsInner(input.map(_.zipWithIndex.toVector).zipWithIndex.toVector)
 }

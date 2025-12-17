@@ -39,11 +39,9 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
   "Day 2" should {
     val day          = "day2"
-    val input        = Utils.getInputFromDay(day).flatMap(_.split(',').toList)
+    val input        = Utils.getInputFromDay(day)
     val exampleInput =
-      "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
-        .split(',')
-        .toList
+      "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124" :: Nil
 
     "Part 1 example" in {
       Day2Part1.getAns(exampleInput) shouldEqual 1227775554L
@@ -85,13 +83,10 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
   }
 
   "Day 4" should {
-    val day = "day4"
-    val input        = Utils.getInputFromDay(day).map(_.zipWithIndex.toVector).zipWithIndex.toVector
-    val exampleInput = "..@@.@@@@.\n@@@.@.@.@@\n@@@@@.@.@@\n@.@@@@..@.\n@@.@@@@.@@\n.@@@@@@@.@\n.@.@.@.@@@\n@.@@@.@@@@\n.@@@@@@@@.\n@.@.@@@.@."
-      .split('\n')
-      .map(_.zipWithIndex.toVector)
-      .zipWithIndex
-      .toVector
+    val day          = "day4"
+    val input        = Utils.getInputFromDay(day)
+    val exampleInput =
+      "..@@.@@@@.\n@@@.@.@.@@\n@@@@@.@.@@\n@.@@@@..@.\n@@.@@@@.@@\n.@@@@@@@.@\n.@.@.@.@@@\n@.@@@.@@@@\n.@@@@@@@@.\n@.@.@@@.@.".split('\n').toList
 
     "Part 1 example" in {
       Day4Part1.getAns(exampleInput) shouldEqual 13

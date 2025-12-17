@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 
 object Day2Part1 extends StrictLogging {
   @tailrec
-  def getAns(input: List[String], sum: Long = 0): Long = input match {
+  def getAnsInner(input: List[String], sum: Long = 0): Long = input match {
     case h :: t =>
       // rawRange should always be an array of 2 items
       val rawRange = h.split('-')
@@ -17,7 +17,9 @@ object Day2Part1 extends StrictLogging {
         val xLen = xStr.length
         if (xLen % 2 == 0 && xStr.grouped(xLen / 2).toSet.size == 1) newSum + x else newSum
       }
-      getAns(t, total)
+      getAnsInner(t, total)
     case Nil => sum
   }
+
+  def getAns(input: List[String]): Long = getAnsInner(input.flatMap(_.split(',').toList))
 }

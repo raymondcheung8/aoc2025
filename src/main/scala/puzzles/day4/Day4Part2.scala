@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 
 object Day4Part2 extends StrictLogging {
   @tailrec
-  def getAns(input: Vector[(Vector[(Char, Int)], Int)], count: Int = 0): Int = {
+  def getAnsInner(input: Vector[(Vector[(Char, Int)], Int)], count: Int = 0): Int = {
     val (newCount, newInput) =
       input.foldLeft((0, Vector[(Vector[(Char, Int)], Int)]())) { case ((count, newInput), (row, j)) =>
         val (newRowCount, newRowInput) = row.foldLeft((0, Vector[(Char, Int)]())) { case ((rowCount, newRow), (char, i)) =>
@@ -25,6 +25,8 @@ object Day4Part2 extends StrictLogging {
         (count + newRowCount, newInput :+ (newRowInput, j))
       }
     logger.debug(s"$newCount --- $newInput")
-    if (newCount == 0) count else getAns(newInput, newCount + count)
+    if (newCount == 0) count else getAnsInner(newInput, newCount + count)
   }
+
+  def getAns(input: List[String]): Int = getAnsInner(input.map(_.zipWithIndex.toVector).zipWithIndex.toVector)
 }
