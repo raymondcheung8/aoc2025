@@ -107,8 +107,8 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
   }
 
   "Day 5" should {
-    val day = "day5"
-    val input = Utils.getInputFromDay(day)
+    val day          = "day5"
+    val input        = Utils.getInputFromDay(day)
     val exampleInput = "3-5\n10-14\n16-20\n12-18\n\n1\n5\n8\n11\n17\n32".split('\n').toList
 
     "Part 1 example" in {
@@ -116,11 +116,15 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     }
 
     "Part 1" in {
-      Day5Part1.getAns(input) shouldEqual 770
+      Day5Part1.getAns(input) shouldEqual answers((day, "part1"))
     }
 
     "Part 2 example" in {
       Day5Part2.getAns(exampleInput) shouldEqual 14
+    }
+
+    "Part 2" in {
+      Day5Part2.getAns(input) shouldEqual answers((day, "part2"))
     }
   }
 }

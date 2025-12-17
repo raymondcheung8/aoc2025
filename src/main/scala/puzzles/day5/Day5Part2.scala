@@ -1,6 +1,8 @@
 package puzzles.day5
 
-object Day5Part2 {
+import com.typesafe.scalalogging.StrictLogging
+
+object Day5Part2 extends StrictLogging {
   def getAns(input: List[String]): Long = {
     val freshRanges =
       input.collect {
@@ -10,13 +12,27 @@ object Day5Part2 {
           }
       }
 
-    input.count { str =>
-      str != "" &&
-        !str.contains('-') &&
-        freshRanges.exists { case (l, r) =>
-          val x = str.toLong
-          x >= l && x <= r
+    val freshRangesNoOverlap = freshRanges.tail.foldLeft(freshRanges.head :: Nil) { case (ranges, lr) =>
+      logger.debug(s"$ranges + $lr")
+      val finalRanges = ranges.foldLeft(lr :: Nil) { case (newRanges, (l2, r2)) =>
+        newRanges.flatMap { case (l, r) =>
+          val isLeft   = (x: Long) => x < l2 && x < r2
+          val isInside = (x: Long) => x >= l2 && x <= r2
+          val isRight  = (x: Long) => x > l2 && x > r2
+
+          (l, r) match {
+            case (l, r) if isInside(l) && isInside(r)                         => Nil
+            case (l, r) if isLeft(l) && isLeft(r) || isRight(l) && isRight(r) => (l, r) :: Nil
+            case (l, r) if isLeft(l) && isInside(r)                           => (l, l2 - 1) :: Nil
+            case (l, r) if isInside(l) && isRight(r)                          => (r2 + 1, r) :: Nil
+            case (l, r) if isLeft(l) && isRight(r)                            => (l, l2 - 1) :: (r2 + 1, r) :: Nil
+          }
         }
+      } ::: ranges
+      logger.debug(s"$finalRanges")
+      finalRanges
     }
+
+    freshRangesNoOverlap.map { case (l, r) => r - l + 1 }.sum
   }
 }
