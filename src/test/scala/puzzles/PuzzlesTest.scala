@@ -145,5 +145,9 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     "Part 2 example" in {
       Day6Part2.getAns(exampleInput) shouldEqual 3263827L
     }
+
+    "Part 2" in {
+      Day6Part2.getAns(input) shouldEqual answers((day, "part2"))
+    }
   }
 }
