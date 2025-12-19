@@ -4,7 +4,7 @@ import com.typesafe.scalalogging.StrictLogging
 
 import scala.annotation.tailrec
 
-object Day1Part2_optimised extends StrictLogging {
+object Day1Part2v2 extends StrictLogging {
   @tailrec
   def getAns(input: List[String], pointer: Int = 50, count: Int = 0, carryOver: Option[Char] = None): Int = {
     logger.debug(s"${input.headOption} --- $pointer --- $count --- $carryOver")
