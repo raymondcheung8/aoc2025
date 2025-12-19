@@ -4,7 +4,7 @@ import com.typesafe.scalalogging.StrictLogging
 
 import scala.annotation.tailrec
 
-object Day2Part2 extends StrictLogging {
+object Day2Part2v3 extends StrictLogging {
   @tailrec
   def getAnsInner(input: List[String], sum: Long = 0): Long = input match {
     case h :: t =>
@@ -17,8 +17,8 @@ object Day2Part2 extends StrictLogging {
         val factors     = xLen :: (2 to (xLen / 2)).toList
         val isInvalidId = factors.exists(factor => {
           val subStrLen = xLen / factor
-          val condition = xLen != 1 && xLen % factor == 0 && xStr.grouped(subStrLen).toSet.size == 1
-          if (condition) logger.debug(s"$xStr --- $factor --- ${xStr.grouped(subStrLen).toSet}")
+          val condition = xLen != 1 && xLen % factor == 0 && xStr.substring(0, subStrLen) * factor == xStr
+          if (condition) logger.debug(s"$xStr --- $factor --- ${xStr.substring(0, subStrLen) * factor}")
           condition
         })
         if (isInvalidId) newSum + x else newSum

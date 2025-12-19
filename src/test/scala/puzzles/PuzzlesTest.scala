@@ -3,7 +3,7 @@ package puzzles
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import puzzles.day1.{Day1Part1, Day1Part2, Day1Part2v2}
-import puzzles.day2.{Day2Part1, Day2Part2}
+import puzzles.day2.{Day2Part1, Day2Part2, Day2Part2v2, Day2Part2v3, Day2Part2v4}
 import puzzles.day3.{Day3Part1, Day3Part2}
 import puzzles.day4.{Day4Part1, Day4Part2}
 import puzzles.day5.{Day5Part1, Day5Part2}
@@ -58,8 +58,20 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
       Day2Part2.getAns(exampleInput) shouldEqual 4174379265L
     }
 
-    "Part 2" in {
+    "Part 2 (using factors and partitioning each string)" in {
       Day2Part2.getAns(input) shouldEqual answers((day, "part2"))
+    }
+
+    "Part 2 v2 (using substring lengths and partitioning each string)" in {
+      Day2Part2v2.getAns(input) shouldEqual answers((day, "part2"))
+    }
+
+    "Part 2 v3 (using factors and duplicating substring)" in {
+      Day2Part2v3.getAns(input) shouldEqual answers((day, "part2"))
+    }
+
+    "Part 2 v4 (using substring lengths and duplicating substring)" in {
+      Day2Part2v4.getAns(input) shouldEqual answers((day, "part2"))
     }
   }
 
