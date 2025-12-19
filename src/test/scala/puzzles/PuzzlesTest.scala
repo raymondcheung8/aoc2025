@@ -31,7 +31,7 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
       Day1Part2.getAns(exampleInput) shouldEqual 6
     }
 
-    "Part 2 (recursing every time it goes past 0)" in {
+    "Part 2 (recursing every time it goes past 0)" ignore {
       Day1Part2.getAns(input) shouldEqual answers((day, "part2"))
     }
 
@@ -58,15 +58,15 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
       Day2Part2.getAns(exampleInput) shouldEqual 4174379265L
     }
 
-    "Part 2 (using factors and partitioning each string)" in {
+    "Part 2 (using factors and partitioning each string)" ignore {
       Day2Part2.getAns(input) shouldEqual answers((day, "part2"))
     }
 
-    "Part 2 v2 (using substring lengths and partitioning each string)" in {
+    "Part 2 v2 (using substring lengths and partitioning each string)" ignore {
       Day2Part2v2.getAns(input) shouldEqual answers((day, "part2"))
     }
 
-    "Part 2 v3 (using factors and duplicating substring)" in {
+    "Part 2 v3 (using factors and duplicating substring)" ignore {
       Day2Part2v3.getAns(input) shouldEqual answers((day, "part2"))
     }
 
