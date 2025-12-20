@@ -207,7 +207,11 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     }
 
     "Part 2 example" in {
-      Day8Part2.getAns(exampleInput, 10) shouldEqual 25272
+      Day8Part2.getAns(exampleInput) shouldEqual 25272
+    }
+
+    "Part 2" in {
+      Day8Part2.getAns(input) shouldEqual answers((day, "part2"))
     }
   }
 }
