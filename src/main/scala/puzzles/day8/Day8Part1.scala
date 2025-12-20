@@ -26,8 +26,7 @@ object Day8Part1 extends StrictLogging {
               val circuitsSet = matchingCircuits.toSet
               ((circuits diff circuitsSet) + circuitsSet.flatten, remainingConnections - 1)
             case matchingCircuits if matchingCircuits.length == 1 =>
-              if (circuits.exists(circuit => connection.forall(circuit(_)))) (circuits, remainingConnections)
-              else (circuits.map(circuit => if (connection.exists(circuit(_))) circuit ++ connection else circuit), remainingConnections - 1)
+              (circuits.map(circuit => if (connection.exists(circuit(_))) circuit ++ connection else circuit), remainingConnections - 1)
             case _ => (circuits + connection.toSet, remainingConnections - 1)
           }
         case (acc, _) => acc
