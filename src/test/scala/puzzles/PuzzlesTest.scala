@@ -199,7 +199,11 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
         .toList
 
     "Part 1 example" in {
-      Day8Part1.getAns(exampleInput) shouldEqual 40
+      Day8Part1.getAns(exampleInput, 10) shouldEqual 40
+    }
+
+    "Part 1" in {
+      Day8Part1.getAns(input, 1000) shouldEqual answers((day, "part1"))
     }
   }
 }
