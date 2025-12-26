@@ -6,7 +6,7 @@ object Day9Part1 {
   }
 
   def getAns(input: List[String]): Long = {
-    val positions     = input.map(_.split(',') match { case Array(x, y, _*) => (x.toLong, y.toLong) })
+    val positions = input.map(_.split(',') match { case Array(x, y, _*) => (x.toLong, y.toLong) })
     positions.combinations(2).map(area).max
   }
 }

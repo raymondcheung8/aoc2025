@@ -3,7 +3,7 @@ package puzzles
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import puzzles.day1.{Day1Part1, Day1Part2, Day1Part2v2}
-import puzzles.day2.{Day2Part1, Day2Part2, Day2Part2v2, Day2Part2v3, Day2Part2v4}
+import puzzles.day2._
 import puzzles.day3.{Day3Part1, Day3Part2}
 import puzzles.day4.{Day4Part1, Day4Part2}
 import puzzles.day5.{Day5Part1, Day5Part2}
@@ -217,9 +217,10 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
   }
 
   "Day 9" should {
-    val day = "day9"
-    val input = Utils.getInputFromDay(day)
-    val exampleInput = "7,1\n11,1\n11,7\n9,7\n9,5\n2,5\n2,3\n7,3".split('\n').toList
+    val day                  = "day9"
+    val input                = Utils.getInputFromDay(day)
+    val exampleInput         = "7,1\n11,1\n11,7\n9,7\n9,5\n2,5\n2,3\n7,3".split('\n').toList
+    val edgeCaseExampleInput = "1,1\n1,7\n10,7\n10,1\n8,1\n8,5\n3,5\n3,1".split('\n').toList
 
     "Part 1 example" in {
       Day9Part1.getAns(exampleInput) shouldEqual 50
@@ -231,6 +232,14 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
 
     "Part 2 example" in {
       Day9Part2.getAns(exampleInput) shouldEqual 24
+    }
+
+    "Part 2 edge case example" in {
+      Day9Part2.getAns(edgeCaseExampleInput) shouldEqual 24
+    }
+
+    "Part 2" in {
+      Day9Part2.getAns(input) shouldEqual answers((day, "part2"))
     }
   }
 }
