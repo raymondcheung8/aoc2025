@@ -255,5 +255,9 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     "Part 1 example" in {
       Day10Part1.getAns(exampleInput) shouldEqual 7
     }
+
+    "Part 1" in {
+      Day10Part1.getAns(input) shouldEqual answers((day, "part1"))
+    }
   }
 }
