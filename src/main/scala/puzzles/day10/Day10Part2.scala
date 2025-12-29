@@ -3,28 +3,32 @@ package puzzles.day10
 import scala.annotation.tailrec
 
 object Day10Part2 {
-  private def getNewState(state: Map[Int, Int], button: Set[Int], targetState: Map[Int, Int]): Option[Map[Int, Int]] = {
-    state.foldLeft(Option(Map.empty[Int, Int])) {
-      case (Some(acc), (i, joltage)) if button(i) && joltage < targetState(i)   => Some(acc + (i -> (joltage + 1)))
-      case (Some(acc), (i, joltage)) if !button(i) && joltage <= targetState(i) => Some(acc + (i -> joltage))
-      case _                                                                    => None
-    }
+  private case class State(state: Map[Int, Int], totalJoltage: Int)
+
+  private def getNewState(state: Map[Int, Int], button: Set[Int], targetState: Map[Int, Int]): Option[State] = {
+    state
+      .foldLeft(Option(Map.empty[Int, Int])) {
+        case (Some(acc), (i, joltage)) if button(i) && joltage < targetState(i)   => Some(acc + (i -> (joltage + 1)))
+        case (Some(acc), (i, joltage)) if !button(i) && joltage <= targetState(i) => Some(acc + (i -> joltage))
+        case _                                                                    => None
+      }
+      .map(newState => State(newState, newState.values.sum))
   }
 
   @tailrec
   private def getMinButtonCount(
-      targetState: Map[Int, Int],
+      targetState: State,
       buttons: Vector[Set[Int]],
-      queue: Vector[(Map[Int, Int], Int)],
-      foundStates: Set[Map[Int, Int]] = Set()
+      queue: Vector[(State, Int)],
+      foundStates: Set[State] = Set()
   ): Option[Int] = {
-    val (state, count)      = queue.head
-    val newStates           = buttons.flatMap(getNewState(state, _, targetState)).toSet
-    lazy val diffStates     = newStates diff foundStates
-    lazy val allFoundStates = foundStates union newStates
+    val (State(state, totalJoltage), count) = queue.head
+    val newStates                           = buttons.flatMap(getNewState(state, _, targetState.state)).toSet
+    lazy val diffStates                     = newStates diff foundStates
+    lazy val allFoundStates                 = foundStates union newStates
 
     if (newStates(targetState)) Some(count + 1)
-    else getMinButtonCount(targetState, buttons, queue.tail ++ diffStates.map((_, count + 1)), allFoundStates)
+    else getMinButtonCount(targetState, buttons, (queue.tail ++ diffStates.map((_, count + 1))).sortBy(-_._1.totalJoltage), allFoundStates)
   }
 
   def getAns(input: List[String]): Int = {
@@ -37,8 +41,9 @@ object Day10Part2 {
         )
     })
     machines.map { case (lights, buttons, joltages) =>
-      val startingState = Vector((joltages.view.mapValues(_ => 0).toMap, 0))
-      getMinButtonCount(joltages, buttons, startingState).get
+      val startingState = Vector((State(joltages.view.mapValues(_ => 0).toMap, 0), 0))
+      val targetState   = State(joltages, joltages.values.sum)
+      getMinButtonCount(targetState, buttons, startingState).get
     }.sum
   }
 }
