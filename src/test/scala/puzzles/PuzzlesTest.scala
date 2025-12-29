@@ -263,5 +263,9 @@ class PuzzlesTest extends AnyWordSpec with Matchers {
     "Part 2 example" in {
       Day10Part2.getAns(exampleInput) shouldEqual 33
     }
+
+    "Part 2" in {
+      Day10Part2.getAns(input) shouldEqual 0
+    }
   }
 }
